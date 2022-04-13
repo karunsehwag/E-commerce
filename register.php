@@ -7,16 +7,15 @@ if(!isset($_SESSION["log"]) || $_SESSION["log"] !== true){
     header("location: login.php");
     exit;
 }
-
+$pno=$_SESSION["phone"];
+$name=$_SESSION["rname"];
 // Include config file
 require_once "config.php";
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
-$sname= $_SESSION["snam"];
-$name=$_SESSION["nam"];
-echo $sname; 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -76,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
       
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, scholar,name) VALUES (?, ?, '$sname','$name')";
+        $sql = "INSERT INTO users (username, password,phone,name) VALUES (?, ?,'$pno','$name')";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters

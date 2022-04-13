@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: uploaddb2.php");
+    header("location: index.html");
     exit;
 }
  
@@ -33,8 +33,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
       $sql = "SELECT * FROM users WHERE username = '$username' and password = '$password'"; $resul=mysqli_query($link, $sql); while($row=mysqli_fetch_assoc($resul))
 {$value=$row['id'];
-$scholar=$row['scholar'];
 $name=$row['name'];
+
 
 
 }
@@ -69,11 +69,10 @@ $name=$row['name'];
 							 $_SESSION["name"]=$name;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;  
-                            $_SESSION["name"]=$name;
-                            $_SESSION["scholar"]=$scholar;							
+                          						
                             
                             // Redirect user to welcome page
-                            header("location: uploaddb2.php");
+                            header("location: index.html");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -130,7 +129,7 @@ filter:alpha(opacity=80);
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="contact.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="Userinfo.html">Sign up now</a>.</p>
         </form>
     </div>    
 </body>
