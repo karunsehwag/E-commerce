@@ -106,21 +106,9 @@
                       <fieldset>
                         <button type="submit" name="submit" id="form-submit" class="button">Send Message</button>
                       </fieldset>
+
                     </div>
-                    <div class="col-md-12">
-                      <div class="share">
-                        <h6>You can also keep in touch on: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-	<?php 
+										  <?php 
 
 if(isset($_POST['submit']))
 {
@@ -128,10 +116,9 @@ $name=$_POST['name'];
 $email= $_POST['email'];
 $subject=$_POST['subject'];
 $message=$_POST['message'];
-$address=$_POST['address'];
 $to_email = "Karunchoudhary2000@gmail.com";
 $headers = "From:Karunsehwag2000@gmail.com";
-mail($to_email, $subject, $body, $headers);
+mail($to_email, $subject, $message, $headers);
 
 /*require_once "config.php";
 
@@ -165,6 +152,20 @@ if (mail($email, $to_subject, $to_body, $headers)) {
 
 }
 ?>
+                    <div class="col-md-12">
+                      <div class="share">
+                        <h6>You can also keep in touch on: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
     
     <div class="subscribe-form">
       <div class="container">

@@ -1,3 +1,15 @@
+<?php
+session_start();
+ $name=$_SESSION['name'];
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] != true){
+    header("location: index.html");
+    exit;
+
+}
+ 
+// Include config file
+require_once "config.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +124,7 @@ span.price {
 <body>
 
 <h2>Checkout Form</h2>
-<p>Please Enter your details</p>
+<p>Please Enter your details <?php echo $name; ?></p>
 <div class="row">
   <div class="col-75">
     <div class="container">

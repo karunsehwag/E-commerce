@@ -1,3 +1,15 @@
+<?php
+session_start();
+ $name=$_SESSION['name'];
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] != true){
+    header("location: index.html");
+    exit;
+
+}
+ 
+// Include config file
+require_once "config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,25 +21,17 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>Product Detail</title>
+    <title>Ecommerce</title>
 
-   
+ 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-   
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/tooplate-main.css">
     <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/flex-slider.css">
-
 
   </head>
 
   <body>
-    
-  
-
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
@@ -37,115 +41,51 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
+		 
             <li class="nav-item active">
-              <a class="nav-link" href="products.html">Products
+              <a class="nav-link">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
+              <a class="nav-link" href="products.php">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
+              <a class="nav-link" href="about.html">About Us</a>
             </li>
-			 </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.php">Contact Us</a>
+            </li>
 			 <li class="nav-item">
-              <a class="nav-link" href="contact.php">Register</a>
+              <a class="nav-link"><?php echo $name; ?></a>
             </li>
-			<li class="nav-item">
-              <a class="nav-link" href="login.php">Login</a>
-            </li>
+			
           </ul>
         </div>
       </div>
     </nav>
-
-    
-    <div class="single-product">
+    <div class="banner">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="section-heading">
+            <div class="caption">
+              <h2>Ecommerce HTML Template</h2>
               <div class="line-dec"></div>
-              <h1>Single Product</h1>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="product-slider">
-              <div id="slider" class="flexslider">
-                <ul class="slides">
-                  <li>
-                    <img src="assets/images/big-01.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/big-02.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/big-03.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/big-04.jpg" />
-                  </li>
-                
-                </ul>
-              </div>
-              <div id="carousel" class="flexslider">
-                <ul class="slides">
-                  <li>
-                    <img src="assets/images/thumb-01.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/thumb-02.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/thumb-03.jpg" />
-                  </li>
-                  <li>
-                    <img src="assets/images/thumb-04.jpg" />
-                  </li>
-                
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="right-content">
-              <h4>Single Product Name</h4>
-              <h6>5500</h6>
-              <p>Proin commodo, diam a ultricies sagittis, erat odio rhoncus metus, eu feugiat lorem lacus aliquet arcu. Curabitur in gravida nisi, non placerat nibh. Praesent sit amet diam ultrices, commodo turpis id, dignissim leo. Suspendisse mauris massa, porttitor non fermentum vel, ullamcorper scelerisque velit. </p>
-              <span>7 left on stock</span>
-              <form action="checkout.html" method="get">
-                <label for="quantity">Quantity:</label>
-                <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
-                	onfocus="if(this.value == '1') { this.value = ''; }" 
-                    onBlur="if(this.value == '') { this.value = '1';}"
-                    value="1">
-                <input type="submit" class="button" value="Order Now!">
-              </form>
-              <div class="down-content">
-                <div class="categories">
-                  <h6>Category: <span><a href="#">Pants</a>,<a href="#">Women</a>,<a href="#">Lifestyle</a></span></h6>
-                </div>
-                <div class="share">
-                  <h6>Share: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
-                </div>
-              </div>
+               
             </div>
           </div>
         </div>
       </div>
     </div>
-   
+    
     <div class="featured-items">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
               <div class="line-dec"></div>
-              <h1>You May Also Like</h1>
+              <h1>Featured Items</h1>
             </div>
           </div>
           <div class="col-md-12">
@@ -168,35 +108,35 @@
                 <div class="featured-item">
                   <img src="assets/images/item-03.jpg" alt="Item 3">
                   <h4>Integer vel turpis</h4>
-                  <h6>3500</h6>
+                  <h6>3500.00</h6>
                 </div>
               </a>
               <a href="single-product.html">
                 <div class="featured-item">
                   <img src="assets/images/item-04.jpg" alt="Item 4">
                   <h4>Sed purus quam</h4>
-                  <h6>4500</h6>
+                  <h6>4500.00</h6>
                 </div>
               </a>
               <a href="single-product.html">
                 <div class="featured-item">
                   <img src="assets/images/item-05.jpg" alt="Item 5">
                   <h4>Morbi aliquet</h4>
-                  <h6>5500</h6>
+                  <h6>1500.00</h6>
                 </div>
               </a>
               <a href="single-product.html">
                 <div class="featured-item">
                   <img src="assets/images/item-06.jpg" alt="Item 6">
                   <h4>Urna ac diam</h4>
-                  <h6>6500</h6>
+                  <h6>6500.00</h6>
                 </div>
               </a>
               <a href="single-product.html">
                 <div class="featured-item">
                   <img src="assets/images/item-04.jpg" alt="Item 7">
                   <h4>Proin eget imperdiet</h4>
-                  <h6>7500</h6>
+                  <h6>7500.00</h6>
                 </div>
               </a>
               <a href="single-product.html">
@@ -218,16 +158,16 @@
         </div>
       </div>
     </div>
-    
+ 
     <div class="subscribe-form">
       <div class="container">
         <div class="row">
-         
           
+         
         </div>
       </div>
     </div>
-    
+   
     <div class="footer">
       <div class="container">
         <div class="row">
@@ -260,21 +200,21 @@
         </div>
       </div>
     </div>
- 
+   
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
+  
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/flex-slider.js"></script>
 
 
     <script language = "text/Javascript"> 
       cleared[0] = cleared[1] = cleared[2] = 0;
-      function clearField(t){                   
-      if(! cleared[t.id]){                      
-          cleared[t.id] = 1;  
+      function clearField(t){                  
+      if(! cleared[t.id]){                     
+          cleared[t.id] = 1; 
           t.value='';         
           t.style.color='#fff';
           }

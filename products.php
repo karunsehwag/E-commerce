@@ -1,3 +1,15 @@
+<?php
+session_start();
+ $name=$_SESSION['name'];
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] != true){
+    header("location: index.html");
+    exit;
+
+}
+ 
+// Include config file
+require_once "config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,10 +48,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="products.html">Products
+              <a class="nav-link" href="products.php">Products
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -47,15 +59,12 @@
               <a class="nav-link" href="about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
+              <a class="nav-link" href="contact.php">Contact Us</a>
             </li>
-			 </li>
 			 <li class="nav-item">
-              <a class="nav-link" href="contact.php">Register</a>
+              <a class="nav-link"><?php echo $name; ?></a>
             </li>
-			<li class="nav-item">
-              <a class="nav-link" href="login.php">Login</a>
-            </li>
+			
           </ul>
         </div>
       </div>
@@ -87,7 +96,7 @@
 
         <div class="row posts">
             <div id="1" class="item new col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-01.jpg" alt="">
                   <h4>Proin vel ligula</h4>
@@ -96,7 +105,7 @@
               </a>
             </div>
             <div id="2" class="item high col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-02.jpg" alt="">
                   <h4>Erat odio rhoncus</h4>
@@ -105,7 +114,7 @@
               </a>
             </div>
             <div id="3" class="item low col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-03.jpg" alt="">
                   <h4>Integer vel turpis</h4>
@@ -114,7 +123,7 @@
               </a>
             </div>
             <div id="4" class="item low col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-04.jpg" alt="">
                   <h4>Sed purus quam</h4>
@@ -123,7 +132,7 @@
               </a>
             </div>
             <div id="5" class="item new high col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-05.jpg" alt="">
                   <h4>Morbi aliquet</h4>
@@ -132,7 +141,7 @@
               </a>
             </div>
             <div id="6" class="item new col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-06.jpg" alt="">
                   <h4>Urna ac diam</h4>
@@ -141,7 +150,7 @@
               </a>
             </div>
             <div id="7" class="item new high col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-03.jpg" alt="">
                   <h4>Proin eget imperdiet</h4>
@@ -150,7 +159,7 @@
               </a>
             </div>
             <div id="8" class="item low new col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-02.jpg" alt="">
                   <h4>Nullam risus nisl</h4>
@@ -159,7 +168,7 @@
               </a>
             </div>
             <div id="9" class="item new col-md-4">
-              <a href="single-product.html">
+              <a href="single-product.php">
                 <div class="featured-item">
                   <img src="assets/images/product-01.jpg" alt="">
                   <h4>Cras tempus</h4>
