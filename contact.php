@@ -122,6 +122,7 @@ if(!$link)
 {die("connection failed:".mysqli_connect_error());
 }  
 $sql="INSERT INTO contact ( `NAME`,`EMAIL`,`Subject`,`Message` ) VALUES ('$name','$email','$subject','$message')";
+mysqli_query($link,  $sql);
 
 $to_email = "Karunchoudhary2000@gmail.com";
 $headers = "From:Karunsehwag2000@gmail.com";

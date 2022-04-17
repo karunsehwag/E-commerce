@@ -145,7 +145,7 @@ span.price {
 			<label for="pno"><i class="fa fa-phone"></i> Phone</label>
             <input type="text" id="pno" name="pno" placeholder="">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="">
+            <input type="text" id="address" name="address" placeholder="">
             <label for="city"><i class="fa fa-institution"></i> City</label>
             <input type="text" id="city" name="city" placeholder="">
 
@@ -173,16 +173,27 @@ span.price {
 function Pay(){
        var name=jQuery('#name').val();
 	   var amt=jQuery('#amt').val();
+	   var pno=jQuery('#pno').val();
+	   var address=jQuery('#address').val();
+	   var city=jQuery('#city').val();
+	   var zip=jQuery('#zip').val();
 var options = {
-    "key": "rzp_test_I1OKPa6usESFAr", // Enter the Key ID generated from the Dashboard
-    "amount": amt*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "key": "rzp_test_I1OKPa6usESFAr",
+    "amount": amt*100, 
     "currency": "INR",
     "name": "E-commerce",
     "description": "Test Transaction",
-    "image": "https://example.com/your_logo",
+    "image": "assets/images/header-logo.png",
     
     "handler": function (response){
-       console.log(response);
+        jQuery.ajax({
+                               type:'Post',
+                               url:'payment_process.php',
+                               data:"payment_id="+response.razorpay_payment_id+"&amt="+amt+"&name="+name+"&pno="+pno+"&address="+address+"&city="+city+"&zip="+zip,
+                               success:function(result){
+                                   window.location.href="thank_you.php";
+                               }
+                           });
     }
 };
 var rzp1 = new Razorpay(options);
