@@ -1,13 +1,10 @@
 <?php
 session_start();
- $name=$_SESSION['name'];
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] != true){
+ $name=$_SESSION["name"];
+if(!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true)){
     header("location: index.html");
     exit;
-
 }
- 
-// Include config file
 require_once "config.php";
 ?>
 <!DOCTYPE html>
@@ -63,6 +60,9 @@ require_once "config.php";
             </li>
 			 <li class="nav-item">
               <a class="nav-link"><?php echo $name; ?></a>
+            </li>
+			 <li class="nav-item">
+              <a class="nav-link" href="logout.php">Logout</a>
             </li>
 			
           </ul>

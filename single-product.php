@@ -1,13 +1,10 @@
 <?php
 session_start();
- $name=$_SESSION['name'];
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] != true){
+ $name=$_SESSION["name"];
+if(!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true)){
     header("location: index.html");
     exit;
-
 }
- 
-// Include config file
 require_once "config.php";
 ?>
 <!DOCTYPE html>
@@ -50,7 +47,7 @@ require_once "config.php";
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="products.html">Products
@@ -66,6 +63,9 @@ require_once "config.php";
 			 </li>
 			<li class="nav-item">
               <a class="nav-link"><?php echo $name; ?></a>
+            </li>
+			 <li class="nav-item">
+              <a class="nav-link" href="logout.php">Logout</a>
             </li>
           </ul>
         </div>
