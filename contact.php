@@ -106,9 +106,8 @@
                       <fieldset>
                         <button type="submit" name="submit" id="form-submit" class="button">Send Message</button>
                       </fieldset>
-
                     </div>
-										  <?php 
+					<?php 
 
 if(isset($_POST['submit']))
 {
@@ -116,27 +115,18 @@ $name=$_POST['name'];
 $email= $_POST['email'];
 $subject=$_POST['subject'];
 $message=$_POST['message'];
-$to_email = "Karunchoudhary2000@gmail.com";
-$headers = "From:Karunsehwag2000@gmail.com";
-mail($to_email, $subject, $message, $headers);
 
-/*require_once "config.php";
+require_once "config.php";
 
 if(!$link)
 {die("connection failed:".mysqli_connect_error());
 }  
-$sql="INSERT INTO `userdata`( `NAME`, `DOB`,`EMAIL`,`PHONE`,`PINCODE`,`ADDRESS` ) VALUES ('$name','$dob','$email','$pno','$pin','$address')";
+$sql="INSERT INTO contact ( `NAME`,`EMAIL`,`Subject`,`Message` ) VALUES ('$name','$email','$subject','$message')";
 
+$to_email = "Karunchoudhary2000@gmail.com";
+$headers = "From:Karunsehwag2000@gmail.com";
+mail($to_email, $subject, $message, $headers);
 
-if (mysqli_query($link,  $sql))
-{     session_start();
-                            
-                            
-                            $_SESSION["log"] = true;
-							$_SESSION["phone"] = $pno;
-							$_SESSION["rname"]=$name;
-                            header("location: register.php");
-}*/
 
 
 

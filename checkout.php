@@ -15,6 +15,8 @@ require_once "config.php";
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
 body {
   font-family: Arial;
@@ -62,7 +64,7 @@ body {
   border-radius: 3px;
 }
 
-input[type=text] {
+input[type=text],input[type=number]  {
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;
@@ -120,6 +122,7 @@ span.price {
   }
 }
 </style>
+
 </head>
 <body>
 
@@ -128,15 +131,19 @@ span.price {
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
+      <form>
       
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="">
+            <label for="name"><i class="fa fa-user"></i> Full Name</label>
+            <input type="text" id="name" name="name" placeholder="">
+			<label><i class="fa fa-money"></i> Amount</label>
+            <input type="number" id="amt" name="amt" placeholder="">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
             <input type="text" id="email" name="email" placeholder="">
+			<label for="pno"><i class="fa fa-phone"></i> Phone</label>
+            <input type="text" id="pno" name="pno" placeholder="">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
             <input type="text" id="adr" name="address" placeholder="">
             <label for="city"><i class="fa fa-institution"></i> City</label>
@@ -154,50 +161,45 @@ span.price {
             </div>
           </div>
 
-          <div class="col-50">
-            <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="Please Enter Your Name">
-            <label for="ccnum">card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
-            </div>
-          </div>
+       
           
         </div>
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
-        <input type="submit" value="Continue to checkout" class="btn">
+        <input type="button" class="btn" name="btn" value="pay now" onclick="Pay()"/>
       </form>
+<script>
+function Pay(){
+       var name=jQuery('#name').val();
+	   var amt=jQuery('#amt').val();
+var options = {
+    "key": "rzp_test_I1OKPa6usESFAr", // Enter the Key ID generated from the Dashboard
+    "amount": amt*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "E-commerce",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    
+    "handler": function (response){
+       console.log(response);
+    }
+};
+var rzp1 = new Razorpay(options);
+    rzp1.open();
+   
+
+}
+</script>
     </div>
   </div>
+
   <div class="col-25">
     <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>1</b></span></h4>
       <p><a href="#">Product 1</a> <span class="price">1500</span></p>
-      <p><a href="#">Product 2</a> <span class="price">300</span></p>
-      <p><a href="#">Product 3</a> <span class="price">400</span></p>
-      <p><a href="#">Product 4</a> <span class="price">500</span></p>
       <hr>
-      <p>Total <span class="price" style="color:black"><b>2900</b></span></p>
+      <p>Total <span class="price" style="color:black"><b>1500</b></span></p>
     </div>
   </div>
 </div>
